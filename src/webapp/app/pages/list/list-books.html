@@ -1,0 +1,24 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ng-for="var book of books">
+            <td>
+                <a (click)="viewBook(book)">{{ book.isbn }}</a>
+            </td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.publicationDate }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="text-center">
+    <button (click)="addNewBook()">Add New Book</button>
+</div>

@@ -1,0 +1,35 @@
+{
+  "name": "angular2-boilerplate",
+  "version": "1.0.0",
+  "description": "Simple CRUD application with Angular 2",
+  "main": "dist/angular2-boilerplate.js",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "keywords": [
+    "angular2",
+    "node",
+    "express",
+    "bootstrap",
+    "postgresql"
+  ],
+  "authors": [
+    {
+      "name": "Norbert Annus",
+      "email": "norbert.annus@opencredo.com"
+    }
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "typings"
+  ],
+  "devDependencies": {
+    "bootstrap": "~3.3.5",
+    "traceur-runtime": "~0.0.90"
+  }
+}
