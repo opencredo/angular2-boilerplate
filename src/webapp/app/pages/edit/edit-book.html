@@ -1,1 +1,77 @@
-<div>Edit Book</div>
+<div class="alert alert-success" role="alert"
+     [hidden]="!canShowUpdateSuccessMsg">
+    Book has been successfully updated.
+</div>
+
+<div class="alert alert-danger" role="alert"
+     [hidden]="!canShowUpdateFailedMsg">
+    {{ updateFailedMsg }}
+</div>
+
+<form [ng-form-model]="editBookForm"
+      class="form-horizontal"
+      role="form">
+
+    <div class="form-group">
+        <label class="control-label col-sm-2"
+               for="inputISBN">ISBN:</label>
+        <div class="col-sm-5">
+            <p class="form-control-static"
+               id="inputISBN">{{ book.isbn }}</p>
+        </div>
+    </div>
+
+    <div class="form-group"
+         [class.has-error]="!titleInput.valid && titleInput.touched">
+        <label class="control-label col-sm-2"
+               for="inputTitle">Title:</label>
+        <div class="col-sm-10">
+            <input type="text"
+                   class="form-control"
+                   id="inputTitle"
+                   [(ng-model)]="book.title"
+                   [ng-form-control]="titleInput"
+                   required
+                   autofocus>
+        </div>
+        <span class="col-sm-offset-2 col-sm-10 help-block"
+              *ng-if="!titleInput.valid && titleInput.touched">
+            This field is required.
+        </span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2"
+               for="inputAuthor">Author:</label>
+        <div class="col-sm-10">
+            <input type="text"
+                   class="form-control"
+                   id="inputAuthor"
+                   [(ng-model)]="book.author"
+                   [ng-form-control]="authorInput"
+                    >
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2"
+               for="inputPublicationDate">Publication Date:</label>
+        <div class="col-sm-5">
+            <input type="date"
+                   class="form-control"
+                   id="inputPublicationDate"
+                   [(ng-model)]="book.publicationDate"
+                   [ng-form-control]="publicationDateInput"
+                    >
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <button class="btn btn-success"
+                type="submit"
+                [disabled]="!editBookForm.valid"
+                (click)="updateBook()">Save</button>
+    </div>
+
+</form>
+

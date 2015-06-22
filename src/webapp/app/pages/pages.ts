@@ -17,7 +17,23 @@ import {ViewBook} from './view/view-book';
 @View({
     directives: [ RouterOutlet, RouterLink, coreDirectives ],
     template: `
-  <h1 class="title">{{ title }}</h1>
+  <nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">{{ title }}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a router-link="list">List</a>
+                </li>
+                <li>
+                    <a router-link="create">Create</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
 
   <main>
     <router-outlet></router-outlet>
@@ -26,10 +42,10 @@ import {ViewBook} from './view/view-book';
 })
 
 @RouteConfig([
-    { path: '/',          as: 'list',      component: ListBooks },
+    { path: '/list',      as: 'list',      component: ListBooks },
     { path: '/create',    as: 'create',    component: CreateBook },
     { path: '/edit/:id',  as: 'edit',      component: EditBook },
-    { path: '/view/:id',  as: 'view',      component: View }
+    { path: '/view/:id',  as: 'view',      component: ViewBook }
 ])
 
 export class App {

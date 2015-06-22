@@ -8,9 +8,12 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     less = require('gulp-less'),
     runSequence = require('run-sequence'),
+    connect = require('gulp-connect'),
+    gls = require('gulp-live-server'),
     Config = require('./gulpfile.config'),
 
-    config = new Config();
+    config = new Config(),
+    server;
 
 gulp.task('ts-lint', function () {
     return gulp.src(config.allTypeScript)
@@ -72,12 +75,24 @@ gulp.task('watch', function() {
     gulp.watch([config.allHTML], ['copy-html']);
 });
 
+gulp.task('local', function () {
+    server = gls.new(config.serverPath);
+    server.start();
+    /*return connect.server({
+        root: [config.dest],
+        port: config.localWebserverPort,
+        livereload: false,
+        browser: config.defaultBrowser
+    });*/
+});
+
 gulp.task('default', function () {
     runSequence(
         'clean',
         'ts-lint',
         'compile-ts',
         ['copy-html', 'copy-lib', 'styles'],
-        'watch'
+        'watch',
+        'local'
     )
 });

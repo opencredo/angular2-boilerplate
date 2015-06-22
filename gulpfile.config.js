@@ -11,6 +11,9 @@ var GulpConfig = (function () {
         this.outputCSSDir = '/css';
         this.outputLibDir = '/lib';
 
+        this.defaultBrowser = 'Google Chrome';
+        this.localWebserverPort = 7777;
+
         this.mainLessFile = this.webappSrc + '/assets/styles/main.less';
         this.allHTML = [
             this.webappSrc + '/*.html',
@@ -25,7 +28,7 @@ var GulpConfig = (function () {
         ];
 
         this.testConfigPath = './test/config';
-        this.serverPath = this.src + '/server';
+        this.serverPath = this.src + '/server/server.js';
 
         this.libraryTypeScriptDefinitions = this.typingsDir + '/**/*.ts';
         this.appTypeScriptReferences = this.typingsDir + '/tsd.d.ts';

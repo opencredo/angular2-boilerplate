@@ -5,20 +5,29 @@
             <th>Title</th>
             <th>Author</th>
             <th>Publication Date</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ng-for="var book of books">
-            <td>
-                <a (click)="viewBook(book)">{{ book.isbn }}</a>
-            </td>
+        <tr *ng-for="var book of books; #i = index">
+            <td>{{ book.isbn }}</td>
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
             <td>{{ book.publicationDate }}</td>
+            <td class="pull-left">
+                <button type="button"
+                        id="viewButton-row-{{i + 1}}"
+                        class="btn btn-default"
+                        (click)="viewBook(book)">View</button>
+                <button type="button"
+                        id="editButton-row-{{i + 1}}"
+                        class="btn btn-primary"
+                        (click)="editBook(book)">Edit</button>
+                <button type="button"
+                        id="deleteButton-row-{{i + 1}}"
+                        class="btn btn-danger"
+                        (click)="deleteBook(book)">Delete</button>
+            </td>
         </tr>
     </tbody>
 </table>
-
-<div class="text-center">
-    <button (click)="addNewBook()">Add New Book</button>
-</div>

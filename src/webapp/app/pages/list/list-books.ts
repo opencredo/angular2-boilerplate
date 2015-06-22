@@ -5,6 +5,8 @@
 import {Component, View, Directive, coreDirectives} from 'angular2/angular2';
 import {Router} from 'angular2/router';
 
+import {BookService} from '../../services/BookService';
+
 @Component({
     selector: 'list-books'
 })
@@ -16,29 +18,27 @@ import {Router} from 'angular2/router';
 
 export class ListBooks {
     books: Array<any>;
-    constructor(public router:Router) {
-        this.books = [
-            {
-                isbn: '1234',
-                title: 'Title',
-                author: 'John Doe',
-                publicationDate: new Date()
 
-            },
-            {
-                isbn: '12345',
-                title: 'Title X',
-                author: 'Jane Doe',
-                publicationDate: new Date()
-            }
-        ]
+    constructor(public router:Router, public bookService:BookService) {
+        this.getBooks();
+    }
+
+    getBooks() {
+        this.bookService.getBooks()
+            .map(res => res.json())
+            .subscribe(res => this.books = res);
     }
 
     viewBook(book) {
-        this.router.navigate('/view/' + book.isbn);
+        this.router.parent.navigate('/view/' + book.isbn);
     }
 
-    addNewBook() {
-        this.router.navigate('/create');
+    editBook(book) {
+        this.router.parent.navigate('/edit/' + book.isbn);
+    }
+
+    deleteBook(book) {
+        this.bookService.deleteBook(book.isbn)
+            .subscribe(res => this.getBooks());
     }
 }
