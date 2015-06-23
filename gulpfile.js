@@ -4,11 +4,10 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     del = require('del'),
     rename = require('gulp-rename'),
-    typesript = require('typescript'),
+    typescript = require('typescript'),
     plumber = require('gulp-plumber'),
     less = require('gulp-less'),
     runSequence = require('run-sequence'),
-    connect = require('gulp-connect'),
     gls = require('gulp-live-server'),
     Config = require('./gulpfile.config'),
 
@@ -30,7 +29,7 @@ gulp.task('compile-ts', function () {
         tsResult = gulp.src(sourceTsFiles)
             .pipe(sourcemaps.init())
             .pipe(tsc({
-                typescript: typesript,
+                typescript: typescript,
                 module: 'commonjs',
                 target: 'ES5',
                 emitDecoratorMetadata: true,
@@ -78,12 +77,6 @@ gulp.task('watch', function() {
 gulp.task('local', function () {
     server = gls.new(config.serverPath);
     server.start();
-    /*return connect.server({
-        root: [config.dest],
-        port: config.localWebserverPort,
-        livereload: false,
-        browser: config.defaultBrowser
-    });*/
 });
 
 gulp.task('default', function () {
