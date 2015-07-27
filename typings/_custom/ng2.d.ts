@@ -1,6 +1,15 @@
 declare var zone: any;
 declare var Zone: any;
 
+declare module "angular2/http" {
+    class Http {
+        get(url: string): any;
+        delete(url: string): any;
+    }
+    class BaseRequestOptions {}
+    var Headers: any;
+    var httpInjectables: any;
+}
 
 declare module "angular2/change_detection" {
     class Pipe {}
@@ -126,6 +135,7 @@ declare module "angular2/src/router/location" {
 declare module "angular2/router" {
     class Instruction {}
     class Router {
+        parent: any;
         navigate(url: string): Promise<any>;
         config(config: any): Promise<any>;
         deactivate(): Promise<any>;
